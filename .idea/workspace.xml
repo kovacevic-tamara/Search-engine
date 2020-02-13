@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bd34f557-6ad0-4657-be85-101a8c3907f6" name="Default Changelist" comment="" />
+    <list default="true" id="bd34f557-6ad0-4657-be85-101a8c3907f6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/projekat.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SearchEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SearchEngine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trie1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trie1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/setuptools-40.8.0-py3.8.egg" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/setuptools-40.8.0-py3.8.egg" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
