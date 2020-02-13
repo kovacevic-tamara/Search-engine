@@ -43,7 +43,6 @@ def kreiraj_graf(path,parser):
 
         graph.insert_edge(verts[src], verts[dest])
 
-    print(graph)
     return graph
 
 def izbor():
