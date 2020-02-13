@@ -1,32 +1,58 @@
-class Graph(object):
-    recnik={}
-    def __init__(self,recnik=None): #ako nema recnika ili je none ostavi
-        if recnik== None:
-            recnik={}
-        self.recnik=recnik
+class Vertex:
+    def __init__(self,page):
+        self._html_page=page
+
+    def html_page(self):
+        return self._html_page
+
+    def __str__(self):
+        return str(self._html_page)
+
+    def __hash__(self):
+        return hash(id(self))
+
+class Edge:
+    def __init__(self,u,v):
+        self.origin=u
+        self.destination=v
+
+    def __hash__(self):
+        return hash((self.origin,self.destination))
+
+    def __str__(self):
+        return str(self.origin)+ "------->"+ str(self.destination)
+
+class Graph:
+    def __init__(self):
+        self._ingoing={}
+        self._outgoing={}
 
     def vertices(self):
-        return list(self.recnik.keys())
+        return list(self.graph_dict_outgoing.keys())
 
-    def edges(self):
-        return self.__generate_edges()
+    def  insert_vertex(self,e):
+        v=Vertex(e)
+        self._outgoing[v]={}
+        self._ingoing[v]={}
 
-    def add_vertex(self,vertex):
-        if vertex not in self.recnik:
-            self.recnik[vertex]=[]
+        return v
 
-    def add_edge(self,edge): #nalazi se izmedju 2 cvora
-        edge=set(edge)
-        (vertex1,vertex2)=tuple(edge) #tuple-isto sto i lista samo ne mozes menjati   tuple(python) = p y t h o n
-        if vertex1 in self.recnik:
-            self.recnik[vertex1].append(vertex2)
-        else:
-            self.recnik[vertex1]=[vertex2]
+    def insert_edge(self,u,v):
+        e=Edge(u,v)
+        self. _outgoing[u][v]=e
+        self._ingoing[v][u]=e
 
-    def __generate_edges(self): #staticka
-        edges=[]
-        for vertex in self.recnik:
-            for neighbour in self.recnik[vertex]:
-                if {neighbour,vertex} not in edges:
-                         edges.append({vertex,neighbour})
-        return edges
+    def __str__(self):
+        string=""
+
+        for key in self._outgoing.keys():
+            dic1=self._outgoing[key]
+            dic2=self._ingoing[key]
+
+            for d in dic1.keys():
+                string+= str("{}------>{}\n".format(" "*20,d))
+
+            for d in dic2.keys():
+                string+= str("{}<------{}\n".format(" "*20,d))
+
+        return str(string)
