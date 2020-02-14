@@ -32,8 +32,9 @@ class Trie():
             trenutni_element = lista_elemenata[0]
             if trenutni_element not in koren.deca:
                 for element in lista_elemenata:
-                    self.dodaj(trenutni_element, koren)
-                    koren = trenutni_element
+                    self.dodaj(element, koren)
+                    koren = element
+                element.recnik = {putanja_fajla:1}
             else:
                 for dete in koren.deca:
                     if trenutni_element == dete:
@@ -44,5 +45,21 @@ class Trie():
                             if dete.recnik == None:
                                 dete.recnik = {putanja_fajla:1}
                             elif putanja_fajla not in dete.recnik:
-                                dete.recnik[putanja_fajla] = 1
+                                dete.recnik[putanja_fajla] = 0
                             dete.recnik[putanja_fajla] +=1
+
+    def pretraga(self, rec):
+        trenutni = self.koren
+        for slovo in rec:
+            if slovo not in trenutni.deca:
+                return False
+            else:
+                element = trenutni.deca[trenutni.deca.index(slovo)]
+            trenutni = element
+        if trenutni.recnik != None:
+            niz = []
+            for keys in trenutni.recnik.items():
+                niz.append(keys)
+            return niz
+        else:
+            return False
