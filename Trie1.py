@@ -46,5 +46,3 @@ class Trie():
                             elif putanja_fajla not in dete.recnik:
                                 dete.recnik[putanja_fajla] = 1
                             dete.recnik[putanja_fajla] +=1
-
-

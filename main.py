@@ -4,6 +4,7 @@ from Trie1 import Trie
 from Trie1 import Element
 from graph import Graph
 from parser2 import Parser
+from set import operation_and, operation_or, operation_not
 from stablo import izbor, kreiraj_graf
 
 
