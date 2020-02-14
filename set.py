@@ -1,22 +1,20 @@
     #java and python
 def operation_and(listaRec1, listaRec2):
-    resultSet = list()
+    resultSet = {}
     for html1 in listaRec1:
         for html2 in listaRec2:
             if html1 == html2:
-                resultSet.append(html1)
+                resultSet[html1]=listaRec1[html1]+listaRec2[html1]
 
     return  resultSet
 
 def operation_or(listaRec1,listaRec2):
-    resultSet=list()
-    for html1 in listaRec1:
-        resultSet.append(html1)
-
-    for html2 in listaRec2:
-       if html2 not in resultSet: #ako je isti kao html1 i vec dodat ne treba opet
-           resultSet.append(html2)
-
+    resultSet=listaRec1
+    for html in listaRec2:
+        if html not in resultSet:
+            resultSet[html]=listaRec2[html]
+        else:
+            resultSet[html]=listaRec1[html]+listaRec2[html]
     return resultSet
 
 #python not java, znaci daj sve gde je pajton a nije java
@@ -24,6 +22,6 @@ def operation_not(listaRec1,listaRec2):
     resultSet = listaRec1
     for html in listaRec2:
         if html in resultSet:
-            resultSet.remove(html)
+            del resultSet[html]
 
     return resultSet
