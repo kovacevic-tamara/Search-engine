@@ -2,10 +2,12 @@ import os
 
 from graph import Graph
 from parser2 import Parser
-
+from Trie1 import Trie,Element
+from set import operation_and,operation_not,operation_or
 
 def obilazak_stabla_direktorijuma(path, parser ,edge_list):
     parser=Parser()
+    trie = Trie(Element("KOREN",None))
     for dic in os.listdir(path): #ovde imas samo ime
         dic=os.path.join(path,dic) #ovde mu dajes apsolutnu adresu
         if os.path.isdir(dic):
@@ -14,7 +16,8 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list):
             if ".html" in dic:
                 links, words = parser.parse(dic)
                 #print(links)
-
+                for rec in words:
+                    trie.dodaj_rec(rec)
                 for link in links:
                     edge_list.append((dic,link))
     # print(links)
@@ -49,6 +52,7 @@ def izbor():
     running=1
     parser=Parser()
     edge_list=list()
+    trie = Trie(Element("KOREN",None))
 
     while running==1:
         print("1-Izaberi direktorijum")
@@ -80,6 +84,39 @@ def izbor():
                 print("Pogresan unos!")
                 print("Trenutni direktorijum:\n{}".format(path))
                 print("--"*20)
-        elif user_input==0:
+        elif user_input == 4:
+
+            unos = input("Unesite željeni upit:\n").lower()
+            lista_reci = unos.split()
+
+            if ('and' or 'not' or 'or') not in lista_reci:
+                for i in range(len(lista_reci)):
+                    trie.pretraga(lista_reci[i])
+                # pozivam ovde or funkciju
+            else:
+                if "and" in lista_reci:
+                    if len(lista_reci) == 3 and lista_reci[1] == "and":
+                        recnik1 = trie.pretraga(lista_reci[0])
+                        recnik2 = trie.pretraga(lista_reci[2])
+                        rezultat_and = operation_and(recnik1,recnik2)
+                else:
+                    print("\nNiste dobro uneli upit.(rec1 AND rec2)\n")
+                if "or" in lista_reci:
+                    if len(lista_reci) == 3 and lista_reci[1] == "or":
+                        recnik1 = trie.pretraga(lista_reci[0])
+                        recnik2 = trie.pretraga(lista_reci[2])
+                        rezultat_or = operation_or(recnik1, recnik2)
+                else:
+                    print("\nNiste dobro uneli upit.(rec1 OR rec2)\n")
+                if "not" in lista_reci:
+                    if len(lista_reci) == 2 and lista_reci[0] == "not":
+                        
+                    elif len(lista_reci) == 3 and lista_reci[1] == "not":
+                        recnik1 = trie.pretraga(lista_reci[0])
+                        recnik2 = trie.pretraga(lista_reci[2])
+                        rezultat_not = operation_not(recnik1, recnik2)
+                else:
+                    print("\nNiste dobro uneli upit.(rec1 NOT rec2 ili NOT rec1)\n")
+        elif user_input == 0:
             print("Kraj!")
             return
