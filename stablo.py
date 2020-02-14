@@ -20,7 +20,7 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list):
                     trie.dodaj_rec(rec)
                 for link in links:
                     edge_list.append((dic,link))
-    # print(links)
+    #print(links)
     #print(words)
 
 def kreiraj_graf(path,parser):
@@ -29,7 +29,6 @@ def kreiraj_graf(path,parser):
     edge_list=list()
     graph=Graph()
     obilazak_stabla_direktorijuma(path,parser,edge_list)
-
     V=set()
     for e in edge_list:
         V.add(e[0])
@@ -109,9 +108,9 @@ def izbor():
                 else:
                     print("\nNiste dobro uneli upit.(rec1 OR rec2)\n")
                 if "not" in lista_reci:
-                    if len(lista_reci) == 2 and lista_reci[0] == "not":
+                    #if len(lista_reci) == 2 and lista_reci[0] == "not":
                         
-                    elif len(lista_reci) == 3 and lista_reci[1] == "not":
+                    if len(lista_reci) == 3 and lista_reci[1] == "not":
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_not = operation_not(recnik1, recnik2)
