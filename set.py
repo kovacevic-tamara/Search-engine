@@ -12,6 +12,7 @@ def operation_and(listaRec1, listaRec2):
 
 def operation_or(listaRec1,listaRec2):
     resultSet=listaRec1
+
     for html in listaRec2:
         if html not in resultSet:
             resultSet[html]=listaRec2[html]

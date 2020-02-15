@@ -92,8 +92,10 @@ def izbor():
 
             if ('and' or 'not' or 'or') not in lista_reci:
                 for i in range(len(lista_reci)):
-                    trie.pretraga(lista_reci[i])
-                # pozivam ovde or funkciju
+                    recnik1 = trie.pretraga(lista_reci[i])
+                    recnik2 = trie.pretraga(lista_reci[i+1])
+                    rez = operation_or(recnik1,recnik2)
+                return print(rez)
             else:
                 if "and" in lista_reci:
                     if len(lista_reci) == 3 and lista_reci[1] == "and":
@@ -107,7 +109,7 @@ def izbor():
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_or = operation_or(recnik1, recnik2)
 
-                        return rezultat_or
+                        return print(rezultat_or)
 
                 elif "not" in lista_reci:
                     if len(lista_reci) == 2 and lista_reci[0] == "not":

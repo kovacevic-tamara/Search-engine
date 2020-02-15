@@ -3,6 +3,7 @@ from set import operation_not
 from stablo import izbor
 
 if __name__ == '__main__':
+
    izbor()
 
    lista1={'dd.html':2,'bb.html':3}
