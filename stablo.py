@@ -5,30 +5,32 @@ from parser2 import Parser
 from Trie1 import Trie,Element
 from set import operation_and,operation_not,operation_or
 
-def obilazak_stabla_direktorijuma(path, parser ,edge_list):
+def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
     parser=Parser()
-    trie = Trie(Element("KOREN",None))
     for dic in os.listdir(path): #ovde imas samo ime
         dic=os.path.join(path,dic) #ovde mu dajes apsolutnu adresu
         if os.path.isdir(dic):
-            obilazak_stabla_direktorijuma(dic,parser,edge_list)
+            obilazak_stabla_direktorijuma(dic,parser,edge_list,trie)
         elif os.path.isfile(dic):
             if ".html" in dic:
                 links, words = parser.parse(dic)
                 #print(links)
                 for rec in words:
-                    trie.dodaj_rec(rec,dic)
+                    trie.dodaj_rec(rec.lower(),dic)
                 for link in links:
                     edge_list.append((dic,link))
     #print(links)
     #print(words)
 
-def kreiraj_graf(path,parser):
+def kreiraj_graf(path,parser,trie):
     print('\nUcitavanje podataka u toku ...')
 
     edge_list=list()
     graph=Graph()
-    obilazak_stabla_direktorijuma(path,parser,edge_list)
+
+    obilazak_stabla_direktorijuma(path,parser,edge_list,trie)
+
+
     V=set()
     for e in edge_list:
         V.add(e[0])
@@ -69,9 +71,7 @@ def izbor():
 
         if user_input==1:
             path=input(">>")
-            #fixme
-            #proveri za ovo g=
-            g=kreiraj_graf(path,parser)
+            kreiraj_graf(path,parser,trie)
         elif user_input==2:
             print("--"*20)
             print("Trenutni direktorijum:\n{}".format(path))
@@ -96,32 +96,36 @@ def izbor():
 
             if ('and' or 'not' or 'or') not in lista_reci:
                 for i in range(len(lista_reci)):
-                    trie.pretraga(lista_reci[i])
-                # pozivam ovde or funkciju
+                    recnik1 = trie.pretraga(lista_reci[i])
+                    recnik2 = trie.pretraga(lista_reci[i+1])
+                    rez = operation_or(recnik1,recnik2)
+                return print(rez)
             else:
                 if "and" in lista_reci:
                     if len(lista_reci) == 3 and lista_reci[1] == "and":
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_and = operation_and(recnik1,recnik2)
-                else:
-                    print("\nNiste dobro uneli upit.(rec1 AND rec2)\n")
-                if "or" in lista_reci:
+                        return print(rezultat_and)
+                elif "or" in lista_reci:
                     if len(lista_reci) == 3 and lista_reci[1] == "or":
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_or = operation_or(recnik1, recnik2)
-                else:
-                    print("\nNiste dobro uneli upit.(rec1 OR rec2)\n")
-                if "not" in lista_reci:
-                    #if len(lista_reci) == 2 and lista_reci[0] == "not":
-                        
-                    if len(lista_reci) == 3 and lista_reci[1] == "not":
+
+                        return print(rezultat_or)
+
+                elif "not" in lista_reci:
+                    if len(lista_reci) == 2 and lista_reci[0] == "not":
+                        pass
+                    elif len(lista_reci) == 3 and lista_reci[1] == "not":
+
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_not = operation_not(recnik1, recnik2)
+                        return rezultat_not
                 else:
-                    print("\nNiste dobro uneli upit.(rec1 NOT rec2 ili NOT rec1)\n")
+                    print("\nNiste dobro uneli upit.\n")
         elif user_input == 0:
             print("Kraj!")
             return

@@ -1,6 +1,8 @@
     #java and python
 def operation_and(listaRec1, listaRec2):
     resultSet = {}
+    if listaRec1== False or listaRec2 == False:
+        return resultSet
     for html1 in listaRec1:
         for html2 in listaRec2:
             if html1 == html2:
@@ -10,6 +12,7 @@ def operation_and(listaRec1, listaRec2):
 
 def operation_or(listaRec1,listaRec2):
     resultSet=listaRec1
+
     for html in listaRec2:
         if html not in resultSet:
             resultSet[html]=listaRec2[html]
