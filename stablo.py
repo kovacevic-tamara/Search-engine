@@ -17,7 +17,7 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list):
                 links, words = parser.parse(dic)
                 #print(links)
                 for rec in words:
-                    trie.dodaj_rec(rec)
+                    trie.dodaj_rec(rec,dic)
                 for link in links:
                     edge_list.append((dic,link))
     #print(links)
@@ -45,6 +45,7 @@ def kreiraj_graf(path,parser):
 
         graph.insert_edge(verts[src], verts[dest])
 
+    #print(graph)
     return graph
 
 def izbor():
@@ -60,12 +61,17 @@ def izbor():
         print("4-Unesi upit")
         print("0-Kraj programa")
 
-        user_input=int(input(">>"))
+        try:
+            user_input=int(input(">>"))
+        except ValueError:
+            print("Unesite broj 0-4 iz ponudjenog menija.\n")
+            continue
 
         if user_input==1:
             path=input(">>")
-            kreiraj_graf(path,parser)
-
+            #fixme
+            #proveri za ovo g=
+            g=kreiraj_graf(path,parser)
         elif user_input==2:
             print("--"*20)
             print("Trenutni direktorijum:\n{}".format(path))
@@ -119,3 +125,5 @@ def izbor():
         elif user_input == 0:
             print("Kraj!")
             return
+        else:
+            print("Unesite broj 0-4 iz ponudjenog menija.")
