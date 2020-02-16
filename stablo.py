@@ -3,6 +3,7 @@ import os
 from graph import Graph
 from parser2 import Parser
 from Trie1 import Trie,Element
+from rang import rang
 from set import operation_and,operation_not,operation_or
 
 def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
@@ -106,6 +107,7 @@ def izbor():
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_and = operation_and(recnik1,recnik2)
+                        print(rang(rezultat_and))
                         return print(rezultat_and)
                 elif "or" in lista_reci:
                     if len(lista_reci) == 3 and lista_reci[1] == "or":
