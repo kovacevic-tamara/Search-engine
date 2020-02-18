@@ -6,15 +6,24 @@ from parser2 import Parser
 from Trie1 import Trie,Element
 from rang import rang, prikaz, heap_sort
 from set import operation_and,operation_not,operation_or
+import time
+
 
 def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
     parser=Parser()
-    for dic in os.listdir(path): #ovde imas samo ime
-        dic=os.path.join(path,dic) #ovde mu dajes apsolutnu adresu
+    sadrzaj_foldera = []
+    try:
+        sadrzaj_foldera = os.listdir(path)
+    except Exception:
+        pass
+    if len(sadrzaj_foldera) == 0:
+        return False
+    for dic in sadrzaj_foldera: #ovde imas samo ime
+        dic = os.path.join(path,dic) #ovde mu dajes apsolutnu adresu
         if os.path.isdir(dic):
             obilazak_stabla_direktorijuma(dic,parser,edge_list,trie)
-        elif os.path.isfile(dic):
-            if ".html" in dic:
+        else:
+            if dic.endswith(".html"):
                 links, words = parser.parse(dic)
                 #print(links)
                 for rec in words:
@@ -93,11 +102,17 @@ def izbor():
             lista_reci = unos.split()
 
             if ('and' or 'not' or 'or') not in lista_reci:
-                for i in range(len(lista_reci)):
-                    recnik1 = trie.pretraga(lista_reci[i])
-                    recnik2 = trie.pretraga(lista_reci[i+1])
-                    rez = operation_or(recnik1,recnik2)
-                return print(rez)
+                if len(lista_reci) > 0:
+                    recnik1 = trie.pretraga(lista_reci[0])
+                    i = 1
+                    while i < len(lista_reci):
+                        recnik2 = trie.pretraga(lista_reci[i])
+                        recnik1 = operation_or(recnik1,recnik2)
+                        i+=1
+                    if recnik1 == False:
+                        print("Nema rezultata pretrage")
+                else:
+                    print("Niste uneli reci za pretragu.")
             else:
                 if "and" in lista_reci:
                     if len(lista_reci) == 3 and lista_reci[1] == "and":
@@ -108,13 +123,12 @@ def izbor():
                         rezultat_sort=heap_sort(rezultat_and) #result sortu treba da saljes rezultat ranga
                         prikaz(rezultat_sort)
                         return rezultat_and
+
                 elif "or" in lista_reci:
                     if len(lista_reci) == 3 and lista_reci[1] == "or":
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_or = operation_or(recnik1, recnik2)
-
-                        return print(rezultat_or)
 
                 elif "not" in lista_reci:
                     if len(lista_reci) == 2 and lista_reci[0] == "not":
@@ -124,7 +138,6 @@ def izbor():
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_not = operation_not(recnik1, recnik2)
-                        return rezultat_not
                 else:
                     print("\nNiste dobro uneli upit.\n")
         elif user_input == 0:

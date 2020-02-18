@@ -10,6 +10,7 @@ def rang(resultSet,graph):
         br_inc_reci=0
         br_inc=0
 
+
         for i in incom:
             if i in resultSet.keys():
                 print("MOOOOOOOOOOOOOOOOOOOOOOLIM TEEEEEE")
@@ -39,6 +40,7 @@ def heap_sort(resultSet): #stize mi html stranica kao kljuc i rank kao vrednost
             if res==values:
                 sorted_result[key]=values
     return  sorted_result
+
 
 def build_heap(list):
     for i in reversed(range(len(list)//2)):
