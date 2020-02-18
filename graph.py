@@ -24,7 +24,7 @@ class Edge:
 
 class Graph:
     def __init__(self):
-        self._ingoing={}
+        self._incoming={}
         self._outgoing={}
 
     def vertices(self):
@@ -33,21 +33,30 @@ class Graph:
     def  insert_vertex(self,e):
         v=Vertex(e)
         self._outgoing[v]={}
-        self._ingoing[v]={}
-
+        self._incoming[v]={}
         return v
 
     def insert_edge(self,u,v):
         e=Edge(u,v)
         self. _outgoing[u][v]=e
-        self._ingoing[v][u]=e
+        self._incoming[v][u]=e
+
+    def incoming_edges(self,v):
+        inc= self._incoming  #adj u keys ima granu a u values njene incomingre
+        result=list()
+        for key in inc.keys():
+            if str(key)==str(v):
+                for edge in inc[key].values():
+                   # print(edge)
+                    yield edge
+             #omogucava "vise povratnih vrednosti"
 
     def __str__(self):
         string=""
 
         for key in self._outgoing.keys():
             dic1=self._outgoing[key]
-            dic2=self._ingoing[key]
+            dic2=self._incoming[key]
 
             for d in dic1.keys():
                 string+= str("{}------>{}\n".format(" "*20,d))

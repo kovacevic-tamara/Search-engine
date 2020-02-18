@@ -1,8 +1,10 @@
 import os
 
+import graph
 from graph import Graph
 from parser2 import Parser
 from Trie1 import Trie,Element
+from rang import rang, prikaz, heap_sort
 from set import operation_and,operation_not,operation_or
 
 def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
@@ -19,8 +21,6 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
                     trie.dodaj_rec(rec.lower(),dic)
                 for link in links:
                     edge_list.append((dic,link))
-    #print(links)
-    #print(words)
 
 def kreiraj_graf(path,parser,trie):
     print('\nUcitavanje podataka u toku ...')
@@ -29,8 +29,6 @@ def kreiraj_graf(path,parser,trie):
     graph=Graph()
 
     obilazak_stabla_direktorijuma(path,parser,edge_list,trie)
-
-
     V=set()
     for e in edge_list:
         V.add(e[0])
@@ -71,7 +69,7 @@ def izbor():
 
         if user_input==1:
             path=input(">>")
-            kreiraj_graf(path,parser,trie)
+            g=kreiraj_graf(path,parser,trie) ####################################################
         elif user_input==2:
             print("--"*20)
             print("Trenutni direktorijum:\n{}".format(path))
@@ -106,7 +104,10 @@ def izbor():
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_and = operation_and(recnik1,recnik2)
-                        return print(rezultat_and)
+                        #rang(rezultat_and, g)
+                        rezultat_sort=heap_sort(rezultat_and) #result sortu treba da saljes rezultat ranga
+                        prikaz(rezultat_sort)
+                        return rezultat_and
                 elif "or" in lista_reci:
                     if len(lista_reci) == 3 and lista_reci[1] == "or":
                         recnik1 = trie.pretraga(lista_reci[0])
