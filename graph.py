@@ -28,7 +28,7 @@ class Graph:
         self._outgoing={}
 
     def vertices(self):
-        return list(self.graph_dict_outgoing.keys())
+        return list(self._outgoing.keys())
 
     def  insert_vertex(self,e):
         v=Vertex(e)

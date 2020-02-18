@@ -3,6 +3,7 @@ import os
 from graph import Graph
 from parser2 import Parser
 from Trie1 import Trie,Element
+from rang import rang
 from set import operation_and,operation_not,operation_or
 import time
 
@@ -56,6 +57,7 @@ def kreiraj_graf(path,parser,trie):
 
         graph.insert_edge(verts[src], verts[dest])
 
+    #print(graph)
     return graph
 
 def izbor():
@@ -71,13 +73,15 @@ def izbor():
         print("4-Unesi upit")
         print("0-Kraj programa")
 
-        user_input=int(input(">>"))
+        try:
+            user_input=int(input(">>"))
+        except ValueError:
+            print("Unesite broj 0-4 iz ponudjenog menija.\n")
+            continue
 
         if user_input==1:
             path=input(">>")
             kreiraj_graf(path,parser,trie)
-
-
         elif user_input==2:
             print("--"*20)
             print("Trenutni direktorijum:\n{}".format(path))
@@ -119,6 +123,9 @@ def izbor():
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_and = operation_and(recnik1,recnik2)
 
+                        print(rang(rezultat_and))
+                        return print(rezultat_and)
+
                 elif "or" in lista_reci:
                     if len(lista_reci) == 3 and lista_reci[1] == "or":
                         recnik1 = trie.pretraga(lista_reci[0])
@@ -138,3 +145,5 @@ def izbor():
         elif user_input == 0:
             print("Kraj!")
             return
+        else:
+            print("Unesite broj 0-4 iz ponudjenog menija.")
