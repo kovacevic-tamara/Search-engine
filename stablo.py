@@ -78,7 +78,7 @@ def izbor():
 
         if user_input==1:
             path=input(">>")
-            g=kreiraj_graf(path,parser,trie) ####################################################
+            g=kreiraj_graf(path,parser,trie)
         elif user_input==2:
             print("--"*20)
             print("Trenutni direktorijum:\n{}".format(path))
@@ -119,8 +119,10 @@ def izbor():
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_and = operation_and(recnik1,recnik2)
-                        #rang(rezultat_and, g)
-                        rezultat_sort=heap_sort(rezultat_and) #result sortu treba da saljes rezultat ranga
+                        #rezultat_rang-rang(rezultat_and, g)
+                        #rezultat_sort=heap_sort(rezultat_rang)
+                        rang(rezultat_and,g)
+                        rezultat_sort=heap_sort(rezultat_and)
                         prikaz(rezultat_sort)
                         return rezultat_and
 
@@ -129,7 +131,9 @@ def izbor():
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_or = operation_or(recnik1, recnik2)
-
+                        #rezultat_rang=rang(rezultat_or,g)
+                        #rezultat_sort=heap_sort(rezultat_rang)
+                        #prikaz(rezultat_sort)
                 elif "not" in lista_reci:
                     if len(lista_reci) == 2 and lista_reci[0] == "not":
                         pass
@@ -138,6 +142,9 @@ def izbor():
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
                         rezultat_not = operation_not(recnik1, recnik2)
+                        #rezultat_rang = rang(rezultat_not, g)
+                        #rezultat_sort = heap_sort(rezultat_rang)
+                        #prikaz(rezultat_sort)
                 else:
                     print("\nNiste dobro uneli upit.\n")
         elif user_input == 0:

@@ -4,11 +4,14 @@ class Set:
     def __init__(self,*args):
         self._dict={}
         for arg in args:
-            if isinstance(arg,list):
-                for i in arg:
-                    self.add(i)
-            else:
-                self.add(arg)
+            self.add(arg)
+
+   # def __init__(self, *initial_data, **kwargs):
+    #    for dictionary in initial_data:
+     #       for key in dictionary:
+      #          setattr(self, key, dictionary[key])
+       #     for key in kwargs:
+        #        setattr(self, key, kwargs[key])
 
     def add(self,item):
         if isinstance(item,list):
