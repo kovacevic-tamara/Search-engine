@@ -35,7 +35,11 @@ def heap_sort(resultSet): #stize mi html stranica kao kljuc i rank kao vrednost
         sorted_list.append(list.pop())
         min_heapify(list,0)
 
-    for res in sorted_list:
+    sorted_list2=[]
+    for i in reversed(sorted_list):
+        sorted_list2.append(i)
+
+    for res in sorted_list2:
         for key,values in resultSet.items():
             if res==values:
                 sorted_result[key]=values
@@ -50,14 +54,14 @@ def min_heapify(list,i):
     left=2*i+1
     right=2*i+2
     length=len(list)-1
-    smallest=i
+    mini=i
     if left<=length and list[i]>list[left]:
-        smallest=left
-    if right<=length and list[smallest]>list[right]:
-        smallest=right
-    if smallest!=i:
-        list[i],list[smallest]=list[smallest], list[i]
-        min_heapify(list,smallest)
+        mini=left
+    if right<=length and list[mini]>list[right]:
+        mini=right
+    if mini!=i:
+        list[i],list[mini]=list[mini], list[i]
+        min_heapify(list,mini)
 
 def prikaz(resultSet):
     running=1
