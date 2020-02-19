@@ -1,16 +1,15 @@
-    #java and python
 def operation_and(listaRec1, listaRec2):
     resultSet = {}
     if listaRec1== False or listaRec2 == False:
         print("Nema zajednickog rezultata pretrage.")
     for html1 in listaRec1:
-        for html2 in listaRec2:
-            if html1 == html2:
-                resultSet[html1]=listaRec1[html1]+listaRec2[html1]
-
+         for html2 in listaRec2:
+              if html1 == html2:
+                     resultSet[html1]=listaRec1[html1]+listaRec2[html1]
     return  resultSet
 
 def operation_or(listaRec1,listaRec2):
+
     if listaRec1 == False and listaRec2 == False:
         print("Nema rezultata pretrage")
     elif listaRec1 == False:
@@ -26,11 +25,27 @@ def operation_or(listaRec1,listaRec2):
                 resultSet[html]=listaRec1[html]+listaRec2[html]
     return print(resultSet)
 
-#python not java, znaci daj sve gde je pajton a nije java
+        #python not java, znaci daj sve gde je pajton a nije java
 def operation_not(listaRec1,listaRec2):
     resultSet = listaRec1
     for html in listaRec2:
-        if html in resultSet:
-            del resultSet[html]
-
+         if html in resultSet:
+                del resultSet[html]
     return resultSet
+
+#def operation_and(set1,set2):
+ #   for i in set1:
+  #      if i not in set2:
+   #         set2.remove(i)
+    #return set2
+
+#def operation_or(set1,set2):
+ #   set1.extend(set2)
+  #  return set1
+
+#def operation_not(set1,set2):
+ #   for i in set1:
+  #      if i in set2:
+   #         set2.remove(i)
+    #return set2
+

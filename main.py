@@ -1,17 +1,6 @@
 # -*- coding: utf-8 -*-
-
-from set import operation_or
-from stablo import izbor
-
 from stablo import  izbor
-
-
+from Trie_Proba import Trie,Element
 if __name__ == '__main__':
    izbor()
-
-   lista1={'dd.html':2,'bb.html':3}
-   lista2={'aa.html':3,'bb.html':1,'cc.html':6}
-   print(operation_or(lista1,lista2))
-
-
 
