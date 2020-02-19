@@ -2,10 +2,9 @@ import os
 
 from graph import Graph
 from parser2 import Parser
-from Trie1 import Trie,Element
+from Trie_Proba import Trie,Element
 from rang import rang, prikaz, heap_sort
 from set import resultSet
-
 
 def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
     parser=Parser()
@@ -25,7 +24,16 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
                 links, words = parser.parse(dic)
                 #print(links)
                 for rec in words:
-                    trie.dodaj_rec(rec.lower(),dic)
+                    rec = rec.lower()
+                    #trie.dodaj_rec(rec,dic)
+
+                    if rec in trie.recnik:
+                        if dic not in trie.recnik[rec]:
+                            trie.recnik[rec][dic] = 1
+                        else:
+                            trie.recnik[rec][dic] +=1;
+                    else:
+                        trie.dodaj_rec(rec,dic)
                 for link in links:
                     edge_list.append((dic,link))
 
@@ -78,6 +86,7 @@ def izbor():
         if user_input==1:
             path=input(">>")
             g=kreiraj_graf(path,parser,trie)
+            print(trie.recnik['python'])
         elif user_input==2:
             print("--"*20)
             print("Trenutni direktorijum:\n{}".format(path))
@@ -112,6 +121,8 @@ def izbor():
 
                     if recnik1 == False:
                         print("Nema rezultata pretrage")
+                    else:
+                        print(recnik1)
                 else:
                     print("Niste uneli reci za pretragu.")
             else:

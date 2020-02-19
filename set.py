@@ -1,6 +1,5 @@
-#init add getitem remove clear, iteration za length
-#java and python
 class resultSet:
+
     def operation_and(listaRec1, listaRec2):
         resultSet = {}
         if listaRec1== False or listaRec2 == False:
@@ -8,7 +7,7 @@ class resultSet:
         for html1 in listaRec1:
              for html2 in listaRec2:
                   if html1 == html2:
-                     resultSet[html1]=listaRec1[html1]+listaRec2[html1]
+                    resultSet[html1]=listaRec1[html1]+listaRec2[html1]
         return  resultSet
 
     def operation_or(listaRec1,listaRec2):
