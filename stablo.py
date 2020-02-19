@@ -1,12 +1,10 @@
 import os
 
-import graph
 from graph import Graph
 from parser2 import Parser
 from Trie1 import Trie,Element
 from rang import rang, prikaz, heap_sort
-from set import operation_and,operation_not,operation_or
-import time
+from set import resultSet
 
 
 def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
@@ -62,6 +60,7 @@ def izbor():
     parser=Parser()
     edge_list=list()
     trie = Trie(Element("KOREN",None))
+    result_set=resultSet()
 
     while running==1:
         print("1-Izaberi direktorijum")
@@ -104,11 +103,13 @@ def izbor():
             if ('and' or 'not' or 'or') not in lista_reci:
                 if len(lista_reci) > 0:
                     recnik1 = trie.pretraga(lista_reci[0])
+                    print(recnik1)
                     i = 1
                     while i < len(lista_reci):
                         recnik2 = trie.pretraga(lista_reci[i])
-                        recnik1 = operation_or(recnik1,recnik2)
+                        recnik1 = set.operation_or(recnik1,recnik2)
                         i+=1
+
                     if recnik1 == False:
                         print("Nema rezultata pretrage")
                 else:
@@ -118,11 +119,11 @@ def izbor():
                     if len(lista_reci) == 3 and lista_reci[1] == "and":
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
-                        rezultat_and = operation_and(recnik1,recnik2)
-                        #rezultat_rang-rang(rezultat_and, g)
-                        #rezultat_sort=heap_sort(rezultat_rang)
-                        rang(rezultat_and,g)
-                        rezultat_sort=heap_sort(rezultat_and)
+                        rezultat_and = resultSet.operation_and(recnik1,recnik2)
+                        #prikaz(rezultat_and)
+                        rezultat_rang=rang(rezultat_and, g)
+                        rezultat_sort=heap_sort(rezultat_rang)
+                        #rezultat_sort=heap_sort(rezultat_and)
                         prikaz(rezultat_sort)
                         return rezultat_and
 
@@ -130,7 +131,7 @@ def izbor():
                     if len(lista_reci) == 3 and lista_reci[1] == "or":
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
-                        rezultat_or = operation_or(recnik1, recnik2)
+                        rezultat_or = resultSet.operation_or(recnik1, recnik2)
                         #rezultat_rang=rang(rezultat_or,g)
                         #rezultat_sort=heap_sort(rezultat_rang)
                         #prikaz(rezultat_sort)
@@ -141,7 +142,7 @@ def izbor():
 
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
-                        rezultat_not = operation_not(recnik1, recnik2)
+                        rezultat_not = resultSet.operation_not(recnik1, recnik2)
                         #rezultat_rang = rang(rezultat_not, g)
                         #rezultat_sort = heap_sort(rezultat_rang)
                         #prikaz(rezultat_sort)

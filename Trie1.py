@@ -57,6 +57,19 @@ class Trie():
                 element = trenutni.deca[trenutni.deca.index(slovo)]
             trenutni = element
         if trenutni.recnik != None:
+
             return trenutni.recnik
         else:
             return False
+
+if __name__ == "__main__":
+    trie = Trie(Element("KOREN",None))
+    trie.dodaj_rec('anja','link1')
+    trie.dodaj_rec('jovana','link2')
+    trie.dodaj_rec('goga','link2')
+    trie.dodaj_rec('anja','link3')
+    trie.dodaj_rec('anja','link1')
+    recnik = {'jovana':1,'annja':2,'milica':30}
+    print(recnik)
+    recnik2 = trie.pretraga('anja')
+    print(recnik2)

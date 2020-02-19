@@ -1,25 +1,26 @@
 #fixme netacan unos
 
 def rang(resultSet,graph):
-    brojac = 0  # broj trazenih reci u stranicaama koje ukazuju na moju
-
+    rank = {}
     for res in resultSet.keys():
-        rank={}
         br=resultSet[res]
         incom=graph.incoming_edges(res) #lista izlaznih grana iz mog cvora
         br_inc_reci=0
         br_inc=0
-
-
+        #print(len(incom))
         for i in incom:
-            if i in resultSet.keys():
-                print("MOOOOOOOOOOOOOOOOOOOOOOLIM TEEEEEE")
-                br_inc_reci+=(resultSet[i])
-                br_inc+=3 ##########################################fixme
+           # print(i)
+            #print("Sssss")
+            for j in resultSet.keys():
+                if str(j)==str(i):
+                    print("MOOOOOOOOOOOOOOOOOOOOOOLIM TEEEEEE")
+                    br_inc_reci+=(resultSet[j])
+                    br_inc+=3 ##########################################fixme
             else:
                 br_inc+=1
+        br_inc=len(incom)
         rank[res]=br+round(0.8*br_inc)+round(0.6*br_inc_reci)
-    print(rank)
+   # print(rank)
     return rank
 
 def heap_sort(resultSet): #stize mi html stranica kao kljuc i rank kao vrednost
