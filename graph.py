@@ -46,9 +46,9 @@ class Graph:
         result=list()
         for key in inc.keys():
             if str(key)==str(v):
-                for edge in inc[key].values():
-                   # print(edge)
-                    yield edge
+                for edge in inc[key].keys():
+                    result.append(edge)
+        return  result
              #omogucava "vise povratnih vrednosti"
 
     def __str__(self):

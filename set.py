@@ -33,20 +33,3 @@ def operation_not(listaRec1,listaRec2):
          if html in resultSet:
                 del resultSet[html]
     return resultSet
-
-#def operation_and(set1,set2):
- #   for i in set1:
-  #      if i not in set2:
-   #         set2.remove(i)
-    #return set2
-
-#def operation_or(set1,set2):
- #   set1.extend(set2)
-  #  return set1
-
-#def operation_not(set1,set2):
- #   for i in set1:
-  #      if i in set2:
-   #         set2.remove(i)
-    #return set2
-

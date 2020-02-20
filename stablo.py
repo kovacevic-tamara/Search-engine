@@ -1,13 +1,10 @@
 import os
 
-import graph
 from graph import Graph
 from parser2 import Parser
 from Trie_Proba import Trie,Element
 from rang import rang, prikaz, heap_sort
-from set import operation_and,operation_not,operation_or
-
-
+from set import operation_or,operation_and,operation_not
 
 def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
     parser=Parser()
@@ -65,6 +62,7 @@ def kreiraj_graf(path,parser,trie):
 
     #print(graph)
     return graph
+
 
 def izbor():
     running=1
