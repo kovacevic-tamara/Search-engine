@@ -24,9 +24,8 @@ def operation_or(listaRec1,listaRec2):
                 resultSet[html]=listaRec2[html]
             else:
                 resultSet[html]=listaRec1[html]+listaRec2[html]
-    return print(resultSet)
+    return resultSet
 
-        #python not java, znaci daj sve gde je pajton a nije java
 def operation_not(listaRec1,listaRec2):
     resultSet = listaRec1
     for html in listaRec2:
