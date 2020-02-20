@@ -50,4 +50,8 @@ class Trie():
                             self.recnik[rec][putanja_fajla] = 1
 
     def pretraga(self, rec):
-        return self.recnik[rec]
+        for word in self.recnik:
+            if word == rec:
+                return self.recnik[rec]
+
+        return False

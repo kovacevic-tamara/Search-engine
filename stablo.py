@@ -4,7 +4,7 @@ from graph import Graph
 from parser2 import Parser
 from Trie_Proba import Trie,Element
 from rang import rang, prikaz, heap_sort
-from set import resultSet
+from set import operation_or,operation_and,operation_not
 
 
 
@@ -65,12 +65,12 @@ def kreiraj_graf(path,parser,trie):
     #print(graph)
     return graph
 
+
 def izbor():
     running=1
     parser=Parser()
     edge_list=list()
     trie = Trie(Element("KOREN",None))
-    result_set=resultSet()
 
     while running==1:
         print("1-Izaberi direktorijum")
@@ -88,7 +88,7 @@ def izbor():
         if user_input==1:
             path=input(">>")
             g=kreiraj_graf(path,parser,trie)
-#            print(trie.recnik['python'])
+
         elif user_input==2:
             print("--"*20)
             print("Trenutni direktorijum:\n{}".format(path))
@@ -101,7 +101,7 @@ def izbor():
                 os.chdir(path)
                 print("Uspesna promena direktorijuma!")
                 print("Trenutni direktorijum:\n{}".format(path))
-                obilazak_stabla_direktorijuma(path)
+                obilazak_stabla_direktorijuma(path, parser, edge_list, trie)
             else:
                 print("Pogresan unos!")
                 print("Trenutni direktorijum:\n{}".format(path))
@@ -111,57 +111,58 @@ def izbor():
             unos = input("Unesite željeni upit:\n").lower()
             lista_reci = unos.split()
 
-            if ('and' or 'not' or 'or') not in lista_reci:
-                if len(lista_reci) > 0:
+            if "and" in lista_reci:
+                if len(lista_reci) == 3 and lista_reci[1] == "and":
                     recnik1 = trie.pretraga(lista_reci[0])
-                    #print(recnik1)
-                    i = 1
-                    while i < len(lista_reci):
-                        recnik2 = trie.pretraga(lista_reci[i])
-                        recnik1 = set.operation_or(recnik1,recnik2)
-                        i+=1
-                    if recnik1 == False:
-                        print("Nema rezultata pretrage")
-                    else:
-                        rezultat_rang = rang(recnik1, g)
-                        rezultat_sort = heap_sort(rezultat_rang)
-                        prikaz(rezultat_sort)
-                else:
-                    print("Niste uneli reci za pretragu.")
-            else:
-                if "and" in lista_reci:
-                    if len(lista_reci) == 3 and lista_reci[1] == "and":
-                        recnik1 = trie.pretraga(lista_reci[0])
-                        recnik2 = trie.pretraga(lista_reci[2])
-                        rezultat_and = resultSet.operation_and(recnik1,recnik2)
-                        #prikaz(rezultat_and)
-                        rezultat_rang=rang(rezultat_and, g)
-                        rezultat_sort=heap_sort(rezultat_rang)
-                        #rezultat_sort=heap_sort(rezultat_and)
-                        prikaz(rezultat_sort)
-                        return rezultat_and
-
-                elif "or" in lista_reci:
-                    if len(lista_reci) == 3 and lista_reci[1] == "or":
-                        recnik1 = trie.pretraga(lista_reci[0])
-                        recnik2 = trie.pretraga(lista_reci[2])
-                        rezultat_or = resultSet.operation_or(recnik1, recnik2)
-                        #rezultat_rang=rang(rezultat_or,g)
-                        #rezultat_sort=heap_sort(rezultat_rang)
-                        #prikaz(rezultat_sort)
-                elif "not" in lista_reci:
-                    if len(lista_reci) == 2 and lista_reci[0] == "not":
-                        pass
-                    elif len(lista_reci) == 3 and lista_reci[1] == "not":
-
-                        recnik1 = trie.pretraga(lista_reci[0])
-                        recnik2 = trie.pretraga(lista_reci[2])
-                        rezultat_not = resultSet.operation_not(recnik1, recnik2)
-                        #rezultat_rang = rang(rezultat_not, g)
-                        #rezultat_sort = heap_sort(rezultat_rang)
-                        #prikaz(rezultat_sort)
+                    recnik2 = trie.pretraga(lista_reci[2])
+                    rezultat_and = operation_and(recnik1, recnik2)
+                    # rezultat_rang-rang(rezultat_and, g)
+                    # rezultat_sort=heap_sort(rezultat_rang)
+                    rang(rezultat_and, g)
+                    rezultat_sort = heap_sort(rezultat_and)
+                    prikaz(rezultat_sort)
+                    return rezultat_and
                 else:
                     print("\nNiste dobro uneli upit.\n")
+            elif "or" in lista_reci:
+                if len(lista_reci) == 3 and lista_reci[1] == "or":
+                    recnik1 = trie.pretraga(lista_reci[0])
+                    recnik2 = trie.pretraga(lista_reci[2])
+                    rezultat_or = operation_or(recnik1, recnik2)
+                    # rezultat_rang=rang(rezultat_or,g)
+                    # rezultat_sort=heap_sort(rezultat_rang)
+                    # prikaz(rezultat_sort)
+                else:
+                    print("\nNiste dobro uneli upit.\n")
+            elif "not" in lista_reci:
+                if len(lista_reci) == 2 and lista_reci[0] == "not":
+                    pass
+                elif len(lista_reci) == 3 and lista_reci[1] == "not":
+
+                    recnik1 = trie.pretraga(lista_reci[0])
+                    recnik2 = trie.pretraga(lista_reci[2])
+                    rezultat_not = operation_not(recnik1, recnik2)
+                    # rezultat_rang = rang(rezultat_not, g)
+                    # rezultat_sort = heap_sort(rezultat_rang)
+                    # prikaz(rezultat_sort)
+                else:
+                    print("\nNiste dobro uneli upit.\n")
+
+            elif len(lista_reci) > 0:
+                recnik1 = trie.pretraga(lista_reci[0])
+                i = 1
+                while i < len(lista_reci):
+                    recnik2 = trie.pretraga(lista_reci[i])
+                    recnik1 = operation_or(recnik1, recnik2)
+                    i += 1
+                if recnik1 == False:
+                    print("Nema rezultata pretrage")
+                else:
+                    rang(recnik1, g)
+                    rezultat_sort = heap_sort(recnik1)
+                    prikaz(rezultat_sort)
+            else:
+                print("Niste uneli reci za pretragu.")
         elif user_input == 0:
             print("Kraj!")
             return
