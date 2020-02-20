@@ -6,6 +6,8 @@ from Trie_Proba import Trie,Element
 from rang import rang, prikaz, heap_sort
 from set import resultSet
 
+
+
 def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
     parser=Parser()
     sadrzaj_foldera = []
@@ -34,8 +36,8 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
                             trie.recnik[rec][dic] +=1;
                     else:
                         trie.dodaj_rec(rec,dic)
-                for link in links:
-                    edge_list.append((dic,link))
+                #for link in links:
+                 #   edge_list.append((dic,link))
 
 def kreiraj_graf(path,parser,trie):
     print('\nUcitavanje podataka u toku ...')
@@ -86,7 +88,7 @@ def izbor():
         if user_input==1:
             path=input(">>")
             g=kreiraj_graf(path,parser,trie)
-            print(trie.recnik['python'])
+#            print(trie.recnik['python'])
         elif user_input==2:
             print("--"*20)
             print("Trenutni direktorijum:\n{}".format(path))
@@ -112,17 +114,18 @@ def izbor():
             if ('and' or 'not' or 'or') not in lista_reci:
                 if len(lista_reci) > 0:
                     recnik1 = trie.pretraga(lista_reci[0])
-                    print(recnik1)
+                    #print(recnik1)
                     i = 1
                     while i < len(lista_reci):
                         recnik2 = trie.pretraga(lista_reci[i])
                         recnik1 = set.operation_or(recnik1,recnik2)
                         i+=1
-
                     if recnik1 == False:
                         print("Nema rezultata pretrage")
                     else:
-                        print(recnik1)
+                        rezultat_rang = rang(recnik1, g)
+                        rezultat_sort = heap_sort(rezultat_rang)
+                        prikaz(rezultat_sort)
                 else:
                     print("Niste uneli reci za pretragu.")
             else:
