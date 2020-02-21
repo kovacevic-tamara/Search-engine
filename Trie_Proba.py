@@ -48,13 +48,9 @@ class Trie():
                         if dete.oznaka_kraja == True:
                             self.recnik[rec][putanja_fajla] = 1
 
-
-
     def pretraga(self, rec):
         for word in self.recnik:
             if word == rec:
                 return self.recnik[rec]
 
         return False
-
-
