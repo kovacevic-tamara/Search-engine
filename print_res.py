@@ -1,4 +1,3 @@
-
 def prikaz(resultSet):
     running=1
     ponovo=True
@@ -11,7 +10,7 @@ def prikaz(resultSet):
             flag=False
             ponovo=False
 
-        print("\nOpcije:\n (*)izbor broja stranica \n (+)prikaz sledecih n stranica\n (-)prikaz prethodnih n stranica\n (q)izlaz")
+        print("\nOpcije ispisa dobijenih rezultata:\n (*)izbor broja stranica \n (+)prikaz sledecih n stranica\n (-)prikaz prethodnih n stranica\n (q)izlaz")
         try:
             unos = str(input(">> "))
         except ValueError:
@@ -20,7 +19,8 @@ def prikaz(resultSet):
 
 
         if unos == "q":
-            return
+            running=1
+            break
         elif unos == "+":
             if n==0:
                 print("Neophodno je da uneste broj stranica za prikaz!")
@@ -35,8 +35,10 @@ def prikaz(resultSet):
             try:
                 print("Unesite zeljeni broj stranica za prikaz (ukupno:{})".format(len(resultSet)))
                 n = int(input("-> "))
+                print("{:150s} {:4s}".format("PUTANJA DO HTML STRANICE", "RANG"))
+                print('-' * 155)
             except ValueError:
-                print("Molimo ponovite izbor ->* Unositi iskljucivo celobrojne vrednosti!")
+                print("Molimo ponovite izbor -> * Unositi iskljucivo celobrojne vrednosti!")
                 continue
             i = 0
             ispisano = 0
@@ -54,7 +56,7 @@ def prikaz(resultSet):
                     brojac=brojac+1
                     if brojac==ispisano:
                         if j<n:
-                            print("{}               {}".format(set, resultSet[set]))
+                            print("{:150s} {:4d}".format(set, resultSet[set]))
                             ispisano=ispisano+1
                             j =j+ 1
             else:
@@ -72,7 +74,7 @@ def prikaz(resultSet):
                     #u ispisano imam dokle je stigao
                     if brojac == ispisano:
                         if j < n:
-                            print("{}               {}".format(set, resultSet[set]))
+                            print("{:150s} {:4f}".format(set, resultSet[set]))
                             ispisano = ispisano + 1
                             j = j + 1
             else:

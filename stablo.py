@@ -4,7 +4,7 @@ from graph import Graph
 from parser2 import Parser
 
 def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
-    parser=Parser()
+    #parser=Parser()
     sadrzaj_foldera = []
     try:
         sadrzaj_foldera = os.listdir(path)
@@ -35,7 +35,7 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
                     edge_list.append((dic,link))
 
 def kreiraj_graf(path,parser,trie):
-    print('\nUcitavanje podataka u toku ...')
+    print('\nUcitavanje podataka u toku ...\n')
 
     edge_list=list()
     graph=Graph()
@@ -46,8 +46,6 @@ def kreiraj_graf(path,parser,trie):
     for e in edge_list:
         V.add(e[0])
         V.add(e[1])
-
-    verts={}
 
     for v in V:
        graph.insert_vertex(v)
