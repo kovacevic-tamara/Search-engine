@@ -23,16 +23,17 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
                 #print(links)
                 for rec in words:
                     rec = rec.lower()
-
                     if rec in trie.recnik:
                         if dic not in trie.recnik[rec]:
                             trie.recnik[rec][dic] = 1
                         else:
-                            trie.recnik[rec][dic] +=1;
+                            trie.recnik[rec][dic] +=1
                     else:
                         trie.dodaj_rec(rec,dic)
                 for link in links:
                     edge_list.append((dic,link))
+
+    return True
 
 def kreiraj_graf(path,parser,trie):
     print('\nUcitavanje podataka u toku ...\n')
@@ -40,7 +41,10 @@ def kreiraj_graf(path,parser,trie):
     edge_list=list()
     graph=Graph()
 
-    obilazak_stabla_direktorijuma(path,parser,edge_list,trie)
+    ret = obilazak_stabla_direktorijuma(path,parser,edge_list,trie)
+    if not ret:
+        return False
+
     V=set()
 
     for e in edge_list:
