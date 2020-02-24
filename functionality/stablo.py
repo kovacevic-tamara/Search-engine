@@ -2,7 +2,7 @@ import os
 
 from structures.graph import Graph
 
-def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
+def obilazak_direktorijuma(path, parser ,edge_list,trie):
 
     sadrzaj_foldera = []
     try:
@@ -13,10 +13,10 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
         return False
 
 
-    for dic in sadrzaj_foldera: #ovde imas samo ime
-        dic = os.path.join(path,dic) #ovde mu dajes apsolutnu adresu
-        if os.path.isdir(dic):
-            obilazak_stabla_direktorijuma(dic,parser,edge_list,trie)
+    for dir in sadrzaj_foldera: #ovde imas samo ime
+        dir = os.path.join(path,dir) #ovde mu dajes apsolutnu adresu
+        if os.path.isdir(dir):
+            obilazak_direktorijuma(dir,parser,edge_list,trie)
 
         else:
             if dir.endswith(".html"):
