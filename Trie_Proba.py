@@ -18,7 +18,6 @@ class Trie():
 
     def dodaj_rec(self,rec,putanja_fajla):
         lista_elemenata = []
-
         for i in range(len(rec)):
             element = Element(rec[i],None)
             if i == len(rec):

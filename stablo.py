@@ -9,9 +9,10 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
     try:
         sadrzaj_foldera = os.listdir(path)
     except Exception:
-        pass
+        return False
     if len(sadrzaj_foldera) == 0:
         return False
+
     for dic in sadrzaj_foldera: #ovde imas samo ime
         dic = os.path.join(path,dic) #ovde mu dajes apsolutnu adresu
         if os.path.isdir(dic):
@@ -22,7 +23,6 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
                 #print(links)
                 for rec in words:
                     rec = rec.lower()
-                    #trie.dodaj_rec(rec,dic)
 
                     if rec in trie.recnik:
                         if dic not in trie.recnik[rec]:

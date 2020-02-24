@@ -1,7 +1,5 @@
 class Set():
     def operation_and(self,listaRec1, listaRec2):
-        print(len(listaRec1.keys()))
-        print(len(listaRec2.keys()))
         resultSet = {}
         if listaRec1== False or listaRec2 == False:
             print("Nema zajednickog rezultata pretrage.")
@@ -13,6 +11,8 @@ class Set():
         return  resultSet
 
     def operation_or(self,listaRec1,listaRec2):
+        resultSet = {}
+
         if listaRec1 == False and listaRec2 == False:
             print("Nema rezultata pretrage")
         elif listaRec1 == False:
