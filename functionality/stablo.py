@@ -1,10 +1,9 @@
 import os
 
-from graph import Graph
-from parser2 import Parser
+from structures.graph import Graph
 
-def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
-    #parser=Parser()
+def obilazak_direktorijuma(path, parser ,edge_list,trie):
+
     sadrzaj_foldera = []
     try:
         sadrzaj_foldera = os.listdir(path)
@@ -16,7 +15,7 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
     for dic in sadrzaj_foldera: #ovde imas samo ime
         dic = os.path.join(path,dic) #ovde mu dajes apsolutnu adresu
         if os.path.isdir(dic):
-            obilazak_stabla_direktorijuma(dic,parser,edge_list,trie)
+            obilazak_direktorijuma(dic,parser,edge_list,trie)
         else:
             if dic.endswith(".html"):
                 links, words = parser.parse(dic)
@@ -61,4 +60,3 @@ def kreiraj_graf(path,parser,trie):
         graph.insert_edge(src,dest)
 
     return graph
-

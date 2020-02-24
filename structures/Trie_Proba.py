@@ -51,6 +51,6 @@ class Trie():
     def pretraga(self, rec):
         for word in self.recnik:
             if word == rec:
-                return self.recnik[rec]
+                return self.recnik[rec].copy()
 
         return False

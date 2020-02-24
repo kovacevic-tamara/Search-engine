@@ -10,13 +10,12 @@ def prikaz(resultSet):
             flag=False
             ponovo=False
 
-        print("\nOpcije ispisa dobijenih rezultata:\n (*)izbor broja stranica \n (+)prikaz sledecih n stranica\n (-)prikaz prethodnih n stranica\n (q)izlaz")
+        print("\nOpcije ispisa dobijenih rezultata:\n (*)->izbor broja stranica \n (+)->prikaz sledecih n stranica\n (-)->prikaz prethodnih n stranica\n (q)->izlaz")
         try:
             unos = str(input(">> "))
         except ValueError:
             print("Izaberite opciju iz  menija!\n")
             continue
-
 
         if unos == "q":
             running=1
