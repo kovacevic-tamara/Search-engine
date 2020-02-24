@@ -1,16 +1,13 @@
 import os
 
-from Trie_Proba import Trie, Element
+from structures.Trie_Proba import Trie, Element
 from parser2 import Parser
-from print_res import prikaz
-from rang import rang
-from set import Set
-from sort import heap_sort
-from stablo import kreiraj_graf
+from functionality.print_res import prikaz
+from functionality.rang import rang
+from structures.set import Set
+from functionality.sort import heap_sort
+from functionality.stablo import kreiraj_graf
 
-
-
-#fixme sta raditi sa klasom set ne radi kad se pozove resSet vec samo Set
 def izbor():
     running=1
     parser=Parser()
@@ -19,11 +16,11 @@ def izbor():
     path=str()
     resSet=Set()
     while running==1:
-        print("1-Izaberi direktorijum")
-        print("2-Prikazi trenutni direktorijum")
-        print("3-Promeni direktorijum") #unesi apsolutnu putanju
-        print("4-Unesi upit")
-        print("0-Kraj programa")
+        print("(1)->Izbor direktorijuma")
+        print("(2)->Prikaz trenutnog direktorijuma")
+        print("(3)->Promena direktorijuma") #unesi apsolutnu putanju
+        print("(4)->Unos upita")
+        print("(0)->Kraj programa")
 
         try:
             user_input=int(input(">>"))
@@ -35,7 +32,7 @@ def izbor():
             if len(path)!=0:
                 print("Za promenu direktorijuma izaberite opciju 3!\n")
                 continue
-            path=input(">>")
+            path=os.path.abspath(input("Unesite apsolutnu/relativnu putanju do željenog direktorijuma >> "))
             g=kreiraj_graf(path,parser,trie)
         elif user_input==2:
             if len(path)==0:
@@ -47,17 +44,16 @@ def izbor():
             if len(path)==0:
                 print("Trenutno niste pozicionirani ni na jednom direktorijumu!\n")
                 continue
-           # new_path=os.path.abspath(input("Unesite putanju direktorijuma: ")) #fixme zbog linuxa
-            new_path=input("Unesite putanju direktorijuma: ")
+            new_path=os.path.abspath(input("Unesite putanju direktorijuma: "))
+            #new_path=input("Unesite putanju direktorijuma: ")
             if os.path.exists(new_path) and os.path.isdir(new_path) and new_path!=path:
                 path=new_path
-               # os.chdir(new_path)
+                os.chdir(new_path)
                 print("Uspesna promena direktorijuma!")
                 trie = Trie(Element("KOREN",None))
                 g = kreiraj_graf(path, parser, trie)
-                #fixme puca kad se unese upit nakon promene direktorijumaaaaaaaaaaaa proveriti!
             else:
-                print("Pogresan unos!")
+                print("Pogrešan unos!")
                 print("Trenutni direktorijum:\n{}".format(path))
                 print("--"*20)
         elif user_input == 4:
@@ -70,7 +66,7 @@ def izbor():
                     if lista_reci[0].lower() != lista_reci[2].lower():
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
-                        res_and = Set.operation_and(recnik1, recnik2)
+                        res_and = resSet.operation_and(recnik1, recnik2)
                         rang(res_and, g)
                         res_sort = heap_sort(res_and)
                         prikaz(res_sort)
@@ -83,7 +79,7 @@ def izbor():
                     if lista_reci[0].lower() != lista_reci[2].lower():
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
-                        res_or = Set.operation_or(recnik1, recnik2)
+                        res_or = resSet.operation_or(recnik1, recnik2)
                         res_rang=rang(res_or,g)
                         res_sort=heap_sort(res_rang)
                         prikaz(res_sort)
@@ -96,7 +92,7 @@ def izbor():
                     if lista_reci[0].lower() != lista_reci[2].lower():
                         recnik1 = trie.pretraga(lista_reci[0])
                         recnik2 = trie.pretraga(lista_reci[2])
-                        res_not = Set.operation_not(recnik1, recnik2)
+                        res_not = resSet.operation_not(recnik1, recnik2)
                         res_rang = rang(res_not, g)
                         res_sort = heap_sort(res_rang)
                         prikaz(res_sort)
@@ -117,7 +113,7 @@ def izbor():
                     while i < len(lista_reci):
 
                         recnik2 = trie.pretraga(lista_reci[i])
-                        recnik1 = Set.operation_or(recnik1, recnik2)
+                        recnik1 = resSet.operation_or(recnik1, recnik2)
                         i += 1
                     if recnik1 == False:
                         print("\nNema rezultata pretrage\n")
@@ -130,7 +126,7 @@ def izbor():
             else:
                 print("\nNiste uneli reci za pretragu.\n")
         elif user_input == 0:
-            print("Kraj!")
+            print("Program završen!")
             return
         else:
             print("Unesite broj 0-4 iz ponudjenog menija.")
