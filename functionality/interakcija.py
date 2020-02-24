@@ -78,7 +78,7 @@ def izbor():
                         if lista_reci[0].lower() != lista_reci[2].lower():
                             recnik1 = trie.pretraga(lista_reci[0])
                             recnik2 = trie.pretraga(lista_reci[2])
-                            res_and = Set.operation_and(recnik1, recnik2)
+                            res_and = resSet.operation_and(recnik1, recnik2)
                             rang(res_and, g)
                             res_sort = heap_sort(res_and)
                             prikaz(res_sort)
@@ -91,7 +91,7 @@ def izbor():
                         if lista_reci[0].lower() != lista_reci[2].lower():
                             recnik1 = trie.pretraga(lista_reci[0])
                             recnik2 = trie.pretraga(lista_reci[2])
-                            res_or = Set.operation_or(recnik1, recnik2)
+                            res_or = resSet.operation_or(recnik1, recnik2)
                             res_rang=rang(res_or,g)
                             res_sort=heap_sort(res_rang)
                             prikaz(res_sort)
@@ -104,7 +104,7 @@ def izbor():
                         if lista_reci[0].lower() != lista_reci[2].lower():
                             recnik1 = trie.pretraga(lista_reci[0])
                             recnik2 = trie.pretraga(lista_reci[2])
-                            res_not = Set.operation_not(recnik1, recnik2)
+                            res_not = resSet.operation_not(recnik1, recnik2)
                             res_rang = rang(res_not, g)
                             res_sort = heap_sort(res_rang)
                             prikaz(res_sort)
@@ -125,7 +125,7 @@ def izbor():
                         while i < len(lista_reci):
 
                             recnik2 = trie.pretraga(lista_reci[i])
-                            recnik1 = Set.operation_or(recnik1, recnik2)
+                            recnik1 = resSet.operation_or(recnik1, recnik2)
                             i += 1
                         if recnik1 == False:
                             print("\nNema rezultata pretrage\n")

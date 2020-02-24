@@ -1,8 +1,11 @@
 def prikaz(resultSet):
     running=1
     ponovo=True
+
     if len(resultSet) == 0:
+        print("Nema rezultata pretrage.\n")
         return
+
     while running:
         if ponovo==True: #kad pukne da sve vrati na pocetak
             j=0

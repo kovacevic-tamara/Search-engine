@@ -23,9 +23,9 @@ class Graph:
             dic2=self._incoming[key]
 
             for d in dic1.keys():
-                string+= str("{}------>{}\n".format(" "*20,d))
+                string+= str("{}---->{}\n".format(" "*15,d))
 
             for d in dic2.keys():
-                string+= str("{}<------{}\n".format(" "*20,d))
+                string+= str("{}<----{}\n".format(" "*15,d))
 
         return str(string)

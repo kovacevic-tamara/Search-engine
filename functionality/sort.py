@@ -7,7 +7,7 @@ def heap_sort(resultSet): #stize mi html stranica kao kljuc i rank kao vrednost
     build_heap(list)
     sorted_list=[]
 
-    for _ in range(len(list)):
+    for a in range(len(list)):
         list[0],list[-1]=list[-1],list[0]
         sorted_list.append(list.pop())
         heap_max(list,0)
@@ -17,7 +17,7 @@ def heap_sort(resultSet): #stize mi html stranica kao kljuc i rank kao vrednost
             if res==values:
                 result[key]=values
 
-    return  result
+    return result
 
 def build_heap(list):
     for i in reversed(range(len(list)//2)):

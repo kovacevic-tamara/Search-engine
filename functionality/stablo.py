@@ -12,25 +12,27 @@ def obilazak_stabla_direktorijuma(path, parser ,edge_list,trie):
     if len(sadrzaj_foldera) == 0:
         return False
 
+
     for dic in sadrzaj_foldera: #ovde imas samo ime
         dic = os.path.join(path,dic) #ovde mu dajes apsolutnu adresu
         if os.path.isdir(dic):
             obilazak_stabla_direktorijuma(dic,parser,edge_list,trie)
+
         else:
-            if dic.endswith(".html"):
-                links, words = parser.parse(dic)
-                #print(links)
+            if dir.endswith(".html"):
+                links, words = parser.parse(dir)
                 for rec in words:
                     rec = rec.lower()
                     if rec in trie.recnik:
-                        if dic not in trie.recnik[rec]:
-                            trie.recnik[rec][dic] = 1
+                        if dir not in trie.recnik[rec]:
+                            trie.recnik[rec][dir] = 1
                         else:
-                            trie.recnik[rec][dic] +=1
+                            trie.recnik[rec][dir] +=1;
+
                     else:
-                        trie.dodaj_rec(rec,dic)
+                        trie.dodaj_rec(rec,dir)
                 for link in links:
-                    edge_list.append((dic,link))
+                    edge_list.append((dir,link))
 
     return True
 
@@ -40,7 +42,7 @@ def kreiraj_graf(path,parser,trie):
     edge_list=list()
     graph=Graph()
 
-    ret = obilazak_stabla_direktorijuma(path,parser,edge_list,trie)
+    ret = obilazak_direktorijuma(path,parser,edge_list,trie)
     if not ret:
         return False
 
