@@ -1,5 +1,7 @@
 class Set():
-    def operation_and(listaRec1, listaRec2):
+    def operation_and(self,listaRec1, listaRec2):
+        print(len(listaRec1.keys()))
+        print(len(listaRec2.keys()))
         resultSet = {}
         if listaRec1== False or listaRec2 == False:
             print("Nema zajednickog rezultata pretrage.")
@@ -10,8 +12,7 @@ class Set():
                          resultSet[html1]=listaRec1[html1]+listaRec2[html1]
         return  resultSet
 
-    def operation_or(listaRec1,listaRec2):
-
+    def operation_or(self,listaRec1,listaRec2):
         if listaRec1 == False and listaRec2 == False:
             print("Nema rezultata pretrage")
         elif listaRec1 == False:
@@ -28,7 +29,7 @@ class Set():
         return resultSet
 
             #python not java, znaci daj sve gde je pajton a nije java
-    def operation_not(listaRec1,listaRec2):
+    def operation_not(self,listaRec1,listaRec2):
         resultSet = listaRec1
         for html in listaRec2:
              if html in resultSet:

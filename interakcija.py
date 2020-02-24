@@ -67,7 +67,7 @@ def izbor():
                 if len(lista_reci) == 3 and lista_reci[1] == "and":
                     recnik1 = trie.pretraga(lista_reci[0])
                     recnik2 = trie.pretraga(lista_reci[2])
-                    res_and = Set.operation_and(recnik1, recnik2)
+                    res_and = resSet.operation_and(recnik1, recnik2)
                     rang(res_and, g)
                     res_sort = heap_sort(res_and)
                     prikaz(res_sort)
@@ -77,7 +77,7 @@ def izbor():
                 if len(lista_reci) == 3 and lista_reci[1] == "or":
                     recnik1 = trie.pretraga(lista_reci[0])
                     recnik2 = trie.pretraga(lista_reci[2])
-                    res_or = Set.operation_or(recnik1, recnik2)
+                    res_or = resSet.operation_or(recnik1, recnik2)
                     res_rang=rang(res_or,g)
                     res_sort=heap_sort(res_rang)
                     prikaz(res_sort)
@@ -94,7 +94,7 @@ def izbor():
                 elif len(lista_reci) == 3 and lista_reci[1] == "not":
                     recnik1 = trie.pretraga(lista_reci[0])
                     recnik2 = trie.pretraga(lista_reci[2])
-                    res_not = Set.operation_not(recnik1, recnik2)
+                    res_not = resSet.operation_not(recnik1, recnik2)
                     res_rang = rang(res_not, g)
                     res_sort = heap_sort(res_rang)
                     prikaz(res_sort)
