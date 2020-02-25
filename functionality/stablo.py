@@ -19,7 +19,7 @@ def obilazak_direktorijuma(path, parser ,edge_list,trie):
             obilazak_direktorijuma(dir,parser,edge_list,trie)
 
         else:
-            if dir.endswith(".html"):
+            if dir.endswith(".html") or dir.endswith(".htm"):
                 links, words = parser.parse(dir)
                 for rec in words:
                     rec = rec.lower()
@@ -33,7 +33,6 @@ def obilazak_direktorijuma(path, parser ,edge_list,trie):
                         trie.dodaj_rec(rec,dir)
                 for link in links:
                     edge_list.append((dir,link))
-
     return True
 
 def kreiraj_graf(path,parser,trie):
