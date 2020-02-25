@@ -1,3 +1,5 @@
+#prikaz stranica- prikazuje iskljucivo onoliko stranica koliko je n, ukoliko nije moguce prikazati tacan broj stranica,
+#prikaz nece biti moguc
 def prikaz(resultSet):
     running=1
     ponovo=True
@@ -12,7 +14,7 @@ def prikaz(resultSet):
             ispisano=0
             flag=False
             ponovo=False
-
+        print("\nUkupno je pronađeno {} rezultat/a pretrage.".format(len(resultSet)))
         print("\nOpcije ispisa dobijenih rezultata:\n (*)->izbor broja stranica \n (+)->prikaz sledecih n stranica\n (-)->prikaz prethodnih n stranica\n (q)->izlaz")
         try:
             unos = str(input(">> "))
@@ -35,7 +37,7 @@ def prikaz(resultSet):
             flag = True
         elif unos == "*":
             try:
-                print("Unesite zeljeni broj stranica za prikaz (ukupno:{})".format(len(resultSet)))
+                print("Unesite željeni broj stranica za prikaz")
                 n = int(input("-> "))
                 print("{:150s} {:4s}".format("PUTANJA DO HTML STRANICE", "RANG"))
                 print('-' * 155)

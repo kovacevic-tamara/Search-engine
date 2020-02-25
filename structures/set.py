@@ -5,19 +5,18 @@ class Set():
     def operation_and(self,recnik1, recnik2):
         self.resultSet={}
         if recnik1== False or recnik2 == False:
-            print("Nema zajednickog rezultata pretrage.")
+            print("Nema zajedničkog rezultata pretrage.")
             return self.resultSet
         for html1 in recnik1:
              for html2 in recnik2:
                   if html1 == html2:
                          self.resultSet[html1]=recnik1[html1]+recnik2[html1]
-        print(self.resultSet)
         return  self.resultSet
 
     def operation_or(self,recnik1,recnik2):
         self.resultSet = {}
         if recnik1 == False and recnik2 == False:
-            print("Nema rezultata pretrage")
+            print("Nema rezultata pretrage.")
         elif recnik1 == False:
             self.resultSet = recnik2
         elif recnik2 == False:

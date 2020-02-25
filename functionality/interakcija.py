@@ -28,10 +28,8 @@ def izbor():
         try:
             user_input=int(input(">>"))
         except ValueError:
-            print("Unesite broj 0-4 iz ponudjenog menija.\n")
+            print("Unesite broj 0-5 iz ponudjenog menija.\n")
             continue
-
-
 
         if user_input==1:
             if flag and len(path)!=0:
@@ -56,7 +54,6 @@ def izbor():
                 print("Trenutno niste pozicionirani ni na jednom direktorijumu!\n")
                 continue
             new_path=os.path.abspath(input("Unesite putanju direktorijuma: "))
-            #new_path=input("Unesite putanju direktorijuma: ")
             if os.path.exists(new_path) and os.path.isdir(new_path) and new_path!=path:
                 path=new_path
                 os.chdir(new_path)

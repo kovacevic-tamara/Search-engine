@@ -3,7 +3,6 @@ import os
 from structures.graph import Graph
 
 def obilazak_direktorijuma(path, parser ,edge_list,trie):
-
     sadrzaj_foldera = []
     try:
         sadrzaj_foldera = os.listdir(path)
