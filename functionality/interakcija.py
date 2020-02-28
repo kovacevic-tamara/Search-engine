@@ -1,5 +1,6 @@
 import os
 
+from complex_query.complex import complex_function
 from structures.Trie_Proba import Trie, Element
 from parser2 import Parser
 from functionality.print_res import prikaz
@@ -21,15 +22,14 @@ def izbor():
         print("(2)->Prikaz trenutnog direktorijuma")
         print("(3)->Promena direktorijuma") #unesi apsolutnu putanju
         print("(4)->Unos upita")
+        print("(5)->Kompleksna pretraga")
         print("(0)->Kraj programa")
 
         try:
             user_input=int(input(">>"))
         except ValueError:
-            print("Unesite broj 0-4 iz ponudjenog menija.\n")
+            print("Unesite broj 0-5 iz ponudjenog menija.\n")
             continue
-
-
 
         if user_input==1:
             if flag and len(path)!=0:
@@ -54,7 +54,6 @@ def izbor():
                 print("Trenutno niste pozicionirani ni na jednom direktorijumu!\n")
                 continue
             new_path=os.path.abspath(input("Unesite putanju direktorijuma: "))
-            #new_path=input("Unesite putanju direktorijuma: ")
             if os.path.exists(new_path) and os.path.isdir(new_path) and new_path!=path:
                 path=new_path
                 os.chdir(new_path)
@@ -137,6 +136,10 @@ def izbor():
                         print("\nNiste dobro uneli upit, reci ne smeju da se ponavljaju.\n")
                 else:
                     print("\nNiste uneli reci za pretragu.\n")
+        elif user_input == 5:
+            new_input = str(input("Unesite željeni upit >>"))
+            complex_function(g, trie, new_input)
+            # myparser(newinput)
         elif user_input == 0:
             print("Program završen!")
             return

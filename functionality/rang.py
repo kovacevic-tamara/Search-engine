@@ -13,7 +13,6 @@ def rang(resultSet,graph):
                  br_inc+=2
             else:
                 br_inc+=1
-        br_inc=len(incom)
-        rank[res]=br+round(0.8*br_inc)+round(0.6*br_inc_reci)
+        rank[res]=br_inc+round(0.8*br)+round(0.6*br_inc_reci)
 
     return rank
